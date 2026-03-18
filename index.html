@@ -39,10 +39,9 @@
             --timeline-line: #cbd5e1;
             --icon-fill: #334155;
             
-            /* Novas Variáveis Específicas para o Modal */
-            --modal-overlay: rgba(15, 23, 42, 0.6); /* Fundo escurecido atrás do modal */
-            --modal-surface: #ffffff; /* Fundo do modal Branco Sólido */
-            --input-bg: #f8fafc; /* Fundo dos inputs levemente cinza para dar contraste no branco */
+            --modal-overlay: rgba(15, 23, 42, 0.6); 
+            --modal-surface: #ffffff; 
+            --input-bg: #f8fafc; 
         }
 
         [data-theme="dark"] {
@@ -59,10 +58,8 @@
             --accent: #a855f7;
             --timeline-line: #334155;
             --icon-fill: #cbd5e1;
-            
-            /* Ajustes do Modal para o Dark Mode */
             --modal-overlay: rgba(0, 0, 0, 0.8);
-            --modal-surface: #0f172a; /* Fundo do modal Azul muito escuro e sólido */
+            --modal-surface: #0f172a; 
             --input-bg: rgba(255, 255, 255, 0.05);
         }
 
@@ -87,10 +84,9 @@
         body::before { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--bg-blob-1); }
         body::after { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: var(--bg-blob-2); }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; z-index: 1; }
+        .container { max-width: 1040px; margin: 0 auto; padding: 2rem; position: relative; z-index: 1; }
 
-        /* HEADER E TOGGLE DE TEMA */
-        header { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; padding: 1.5rem 0 4rem 0; }
+        header { display: flex; justify-content: flex-end; align-items: center; gap: 1rem;}
 
         .theme-toggle {
             background: var(--card-bg); border: 1px solid var(--card-border);
@@ -111,109 +107,87 @@
         }
         .btn-glow:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 15px 25px -10px var(--primary-glow); }
 
-        /* HERO SECTION */
-        .hero { margin-bottom: 5rem; }
-        .hero-title { 
-            font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -0.03em;
-        }
+        .hero { margin-bottom: 2.5rem; }
+        .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -0.03em; }
         .hero-subtitle { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 1.5rem; letter-spacing: 1px; text-transform: uppercase; }
-        .hero-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin-bottom: 2.5rem; }
+        .hero-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 750px; margin-bottom: 2.5rem; }
 
         .social-links { display: flex; gap: 1rem; flex-wrap: wrap; }
         .social-btn {
-            display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+            display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
             background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: 10px; color: var(--text-main); font-weight: 600; text-decoration: none;
             backdrop-filter: blur(10px); transition: all 0.3s ease;
         }
-        .social-btn svg { width: 22px; height: 22px; fill: var(--icon-fill); transition: 0.3s; }
+        .social-btn svg { width: 20px; height: 20px; fill: var(--icon-fill); transition: 0.3s; }
         .social-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
-        .social-btn:hover svg { fill: var(--primary); }
 
-        /* GLASS CARD GERAL */
         .glass-panel {
             background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border); border-radius: 20px;
-            box-shadow: var(--card-shadow); padding: 2.5rem; margin-bottom: 4rem;
+            box-shadow: var(--card-shadow); padding: 2.5rem; margin-bottom: 1.5rem;
             transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .section-header { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; color: var(--text-main); }
 
-        /* BENTO GRID - TECH STACK */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
-        .tech-card {
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-            padding: 1.5rem; border-radius: 16px; background: rgba(255,255,255,0.03);
-            border: 1px solid var(--card-border); transition: all 0.3s ease;
-        }
-        .tech-card:hover { border-color: var(--primary); background: rgba(37, 99, 235, 0.05); transform: translateY(-4px); }
-        .tech-card svg { width: 40px; height: 40px; fill: var(--icon-fill); transition: fill 0.3s ease; }
-        .tech-card span { font-weight: 600; font-size: 0.9rem; color: var(--text-main); text-align: center; }
+        /* BADGES */
+        .badges-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .badges-container img { border-radius: 4px; transition: transform 0.2s ease; cursor: default; }
+        .badges-container img:hover { transform: translateY(-2px) scale(1.05); }
 
-        /* TIMELINE EXPERIÊNCIA */
+        /* TIMELINE */
         .timeline { position: relative; padding-left: 2rem; }
         .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--timeline-line); border-radius: 2px; }
-        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item { position: relative; margin-bottom: 3.5rem; }
         .timeline-item:last-child { margin-bottom: 0; }
-        
-        .timeline-item::before {
-            content: ''; position: absolute; left: -2.4rem; top: 0.3rem; width: 14px; height: 14px;
-            background: var(--bg-base); border: 3px solid var(--primary); border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--bg-base); transition: 0.3s; z-index: 2;
-        }
+        .timeline-item::before { content: ''; position: absolute; left: -2.4rem; top: 0.3rem; width: 14px; height: 14px; background: var(--bg-base); border: 3px solid var(--primary); border-radius: 50%; box-shadow: 0 0 0 4px var(--bg-base); transition: 0.3s; z-index: 2; }
         .timeline-item:hover::before { background: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
-        .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+        .job-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 1rem; }
+        .job-title-group { display: flex; flex-direction: column; }
         .job-title { font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
         .job-company { color: var(--primary); font-weight: 600; font-size: 1rem; }
-        .job-date { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); background: var(--bg-base); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--card-border); transition: background-color 0.4s ease; }
-        .job-desc { color: var(--text-muted); margin-top: 1rem; line-height: 1.6; }
+        .job-date { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); background: var(--bg-base); padding: 5px 14px; border-radius: 30px; border: 1px solid var(--card-border); transition: background-color 0.4s ease; }
+        .job-desc { color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6; max-width: 95%; }
+        .job-desc ul { margin-top: 0.8rem; list-style: none; }
+        .job-desc li { position: relative; padding-left: 1.2rem; margin-bottom: 0.4rem; }
+        .job-desc li::before { content: '→'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
 
-        /* =========================================
-           MODAL E FORMS (Correção do Fundo Branco)
-           ========================================= */
-        .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: var(--modal-overlay); backdrop-filter: blur(8px); align-items: center; justify-content: center; transition: background 0.4s; }
-        .modal-content { 
-            background: var(--modal-surface); /* Agora usa a variável de fundo sólido */
-            border: 1px solid var(--card-border); 
-            padding: 2.5rem; border-radius: 24px; width: 90%; max-width: 450px; 
-            box-shadow: var(--card-shadow); position: relative; max-height: 90vh; overflow-y: auto; 
-            transition: background 0.4s ease;
+        /* PROJETOS */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        .project-card { 
+            padding: 1.8rem; border-radius: 16px; background: rgba(0,0,0,0.02); border: 1px solid var(--card-border); transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
+        [data-theme="dark"] .project-card { background: rgba(255,255,255,0.03); }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--card-shadow); }
+        .project-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .project-card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; background: var(--primary-glow); color: var(--primary); padding: 4px 10px; border-radius: 6px; }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: var(--modal-overlay); backdrop-filter: blur(8px); align-items: center; justify-content: center; transition: background 0.4s; }
+        .modal-content { background: var(--modal-surface); border: 1px solid var(--card-border); padding: 2.5rem; border-radius: 24px; width: 90%; max-width: 450px; box-shadow: var(--card-shadow); position: relative; max-height: 90vh; overflow-y: auto; transition: background 0.4s ease; }
         .close-btn { position: absolute; top: 20px; right: 24px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
         .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
-        
         .form-title { text-align: center; font-weight: 800; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text-main); }
         .form-group { margin-bottom: 1.2rem; }
         label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
-        
-        input { 
-            width: 100%; padding: 14px; 
-            background: var(--input-bg); /* Fundo específico para os inputs */
-            border: 1px solid var(--timeline-line); 
-            color: var(--text-main); border-radius: 12px; font-size: 1rem; transition: 0.3s; 
-        }
+        input { width: 100%; padding: 14px; background: var(--input-bg); border: 1px solid var(--timeline-line); color: var(--text-main); border-radius: 12px; font-size: 1rem; transition: 0.3s; }
         input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); background: transparent; }
         .optional { font-weight: 400; color: var(--text-muted); font-size: 0.75rem; }
 
-        /* =========================================
-           RESPONSIVIDADE (MOBILE FIX)
-           ========================================= */
         @media (max-width: 600px) {
             .container { padding: 1.5rem; }
             .hero-title { font-size: 2.5rem; }
             .hero-subtitle { font-size: 1.1rem; }
-            
-            .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .tech-card { padding: 1rem; gap: 8px; }
-            .tech-card svg { width: 30px; height: 30px; }
-            .tech-card span { font-size: 0.8rem; }
-            
             .glass-panel { padding: 1.5rem; }
-            .job-header { flex-direction: column; align-items: flex-start; }
+            .job-header { align-items: flex-start; flex-direction: column; gap: 0.5rem; }
             .timeline { padding-left: 1.5rem; }
-            .timeline-item::before { left: -1.9rem; }
+            .timeline-item::before { left: -1.9rem; top: 0.4rem; }
+            .job-desc { max-width: 100%; }
         }
     </style>
 </head>
@@ -235,96 +209,129 @@
         <section class="hero">
             <h1 class="hero-title">André Silva.</h1>
             <div class="hero-subtitle">Engenheiro de Software Sênior</div>
-            <p class="hero-desc">Especialista no ecossistema PHP/Laravel e arquitetura moderna com Docker. Foco em construir sistemas escaláveis, gerenciar infraestrutura cloud e garantir alta qualidade e governança de dados.</p>
+            <p class="hero-desc">Especialista em sistemas de alta escala, cibersegurança e governança de dados. Projetando soluções resilientes para plataformas com mais de 30 milhões de usuários e milhões de requisições por minuto.</p>
             
             <div class="social-links">
-                <a href="#" class="social-btn">
-                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <a href="https://linkedin.com/in/andre1753" class="social-btn" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     LinkedIn
                 </a>
-                <a href="#" class="social-btn">
-                    <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                <a href="https://github.com/Andre1753" class="social-btn" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                     GitHub
                 </a>
             </div>
         </section>
 
-        <div class="glass-panel">
-            <h2 class="section-header">Core Stack</h2>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1.68 12.63c-.15.42-.6.7-1.07.7H9.98c-.46 0-.82-.36-.82-.82V9.32c0-.46.36-.82.82-.82h3.19c1.47 0 2.54 1.07 2.54 2.54 0 1.27-.88 2.27-2.03 2.5l1.64 2.6c.15.24 0 .58-.27.6l-.37.03v.06z"/></svg>
-                    <span>PHP 8+</span>
-                </div>
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M16.6 20.25c-.21.06-.43.08-.66.08H8.06c-1.37 0-2.48-1.11-2.48-2.48V6.15c0-1.37 1.11-2.48 2.48-2.48h7.88c1.37 0 2.48 1.11 2.48 2.48v11.7c0 .16-.01.31-.04.46-.35-.76-.87-1.42-1.51-1.92l-.12-.1-3.6-2.92-3.6 2.92c-.8.64-1.93.64-2.73 0L5.3 15.3l-.22-.16v4.71c0 1.37 1.11 2.48 2.48 2.48h7.88c.61 0 1.17-.22 1.6-.59l-.44-.49zM12 12.33l2.84 2.31c.26.21.65.21.91 0l2.84-2.31V6.15c0-.85-.69-1.54-1.54-1.54H8.06c-.85 0-1.54.69-1.54 1.54v6.18l2.84 2.31c.26.21.65.21.91 0L12 12.33z"/></svg>
-                    <span>Laravel</span>
-                </div>
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 3h18v18H3V3zm12.5 13.91c0-1.48-1.04-2.18-2.7-2.58-1.31-.32-1.55-.66-1.55-1.15 0-.58.55-1.01 1.4-1.01 1.04 0 1.65.48 1.83 1.25h1.75c-.22-1.5-1.46-2.54-3.5-2.54-1.89 0-3.18 1.1-3.18 2.65 0 1.47 1.05 2.15 2.83 2.56 1.34.32 1.42.79 1.42 1.23 0 .68-.66 1.11-1.57 1.11-1.12 0-1.87-.53-2.07-1.41H7.83c.24 1.68 1.67 2.8 3.82 2.8 2.05 0 3.35-1.12 3.35-2.71zm-5.83.67V9.45h-1.8v6.7c0 1.47.88 2.41 2.42 2.41 1.4 0 2.27-.85 2.32-2.19h-1.74c-.03.58-.33.84-.71.84-.45 0-.49-.37-.49-.63z"/></svg>
-                    <span>JavaScript</span>
-                </div>
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M22.02 12.553c-.027-.811-.327-1.613-.883-2.228-.585-.646-1.408-.98-2.28-1.043-.16-.013-.323-.016-.484-.01h-.032c-.067 0-.135.002-.204.008-.476-1.583-1.682-2.834-3.238-3.444-.305-.12-.622-.213-.948-.278-.204-.041-.413-.072-.625-.094-.28-.03-.564-.042-.852-.036-.312.006-.622.03-.928.07-.34.045-.675.112-1.004.202-.125.034-.248.073-.37.113-1.603.522-2.88 1.708-3.504 3.284-.04.1-.077.2-.11.303-.024.07-.046.143-.066.216-.464-.17-.962-.27-1.478-.292-.516-.023-1.037.05-1.52.21-.502.167-.967.42-1.37.747-.384.312-.716.69-.974 1.114-.247.406-.432.85-.544 1.315-.107.447-.152.912-.132 1.38.02.483.107.962.257 1.42.146.446.353.873.61 1.266.248.38.547.728.887 1.033.35.31.74.576 1.157.788.43.218.89.382 1.366.486.495.108 1.004.155 1.516.142h14.072c1.077 0 2.05-.44 2.76-.145.688.286 1.096 1.035 1.004 1.776-.084.68-.58 1.258-1.24 1.444-1.28.36-2.58.45-3.89.28.067.126.14.25.218.37.525.808 1.288 1.42 2.193 1.775 1.427.56 3.033.36 4.29-.533 1.19-.844 1.83-2.27 1.71-3.774-.112-1.41-1.003-2.618-2.316-3.14-.15-.06-.305-.11-.462-.153z"/></svg>
-                    <span>Docker</span>
-                </div>
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.333 12.315c-.246.012-.49-.07-.665-.226-.208-.184-.33-.45-.33-.733V8.895c0-.284.122-.55.33-.734.174-.155.418-.238.665-.226.376.02.72.228.918.552.198.324.225.727.072 1.076l-1.314 2.942 1.314 2.94c.153.35.126.753-.072 1.077-.198.324-.542.532-.918.552v-.004zm-3.333 0c-.246.012-.49-.07-.665-.226-.208-.184-.33-.45-.33-.733V8.895c0-.284.122-.55.33-.734.174-.155.418-.238.665-.226.376.02.72.228.918.552.198.324.225.727.072 1.076l-1.314 2.942 1.314 2.94c.153.35.126.753-.072 1.077-.198.324-.542.532-.918.552v-.004zM8.667 8.895v4.46c0 .284-.122.55-.33.734-.174.155-.418.238-.665.226-.376-.02-.72-.228-.918-.552-.198-.324-.225-.727-.072-1.076l1.314-2.942L6.68 6.804c-.153-.35-.126-.753.072-1.077.198-.324.542-.532.918-.552.247-.012.49.07.665.226.208.184.33.45.33.733v2.76h.002z"/></svg>
-                    <span>AWS</span>
-                </div>
-                <div class="tech-card">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14.5c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-9c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v9zm3.5-3c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-6c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v6zm3.5-3c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-3c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v3z"/></svg>
-                    <span>PostgreSQL</span>
-                </div>
+        <div class="glass-panel" style="padding: 2rem;">
+            <div class="badges-container">
+                <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+                <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+                <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+                <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
+                <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+                <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+                <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" />
+                <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+                <img src="https://img.shields.io/badge/React_Native-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+                <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+                <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+                <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+                <img src="https://img.shields.io/badge/Cybersecurity-000000?style=for-the-badge&logo=strapi&logoColor=white" />
+                <img src="https://img.shields.io/badge/Cursor_AI-555555?style=for-the-badge&logo=openai&logoColor=white" />
             </div>
         </div>
 
         <div class="glass-panel">
             <h2 class="section-header">Experiência Profissional</h2>
-            
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-title">Desenvolvedor Fullstack Sênior</div>
-                            <div class="job-company">Empresa Confidencial</div>
+                        <div class="job-title-group">
+                            <div class="job-title">Full Stack Pleno II</div>
+                            <div class="job-company">Cademí (Remoto)</div>
                         </div>
-                        <div class="job-date">Ago 2023 - Out 2024</div>
+                        <div class="job-date">Out 2024 - Atual</div>
                     </div>
-                    <p class="job-desc">Atuação sênior com foco central em <strong>monitoramento avançado</strong> de infraestrutura e aplicações. Liderança em iniciativas de Data Quality Management e Governança de Dados (Master Data, Metadata), garantindo a integridade e alta disponibilidade das soluções em produção.</p>
+                    <div class="job-desc">
+                        Atuação em plataforma LMS de alta escala com <strong>30 milhões de alunos</strong> e milhões de requisições por minuto.
+                        <ul>
+                            <li>Liderança técnica na implementação de testes core, alcançando 100% de cobertura em fluxos críticos.</li>
+                            <li>Modernização de arquitetura legada para <strong>DDD e Service Layer</strong> em Laravel.</li>
+                            <li>Desenvolvimento de motor de automação (Crawler) para migração de 50.000+ classes.</li>
+                            <li>Gestão de Big Data (PostgreSQL) e Cache (Redis) com SLA rigoroso de 2 horas.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-title">Desenvolvedor Fullstack</div>
-                            <div class="job-company">Empresa Confidencial</div>
+                        <div class="job-title-group">
+                            <div class="job-title">Full Stack Sênior / Tech Lead</div>
+                            <div class="job-company">Eyecare Health (Remoto)</div>
                         </div>
-                        <div class="job-date">Ago 2022 - Ago 2023</div>
+                        <div class="job-date">Ago 2022 - Out 2024</div>
                     </div>
-                    <p class="job-desc">Desenvolvimento e manutenção de aplicações Fullstack, atuando diretamente no gerenciamento de infraestrutura em nuvem utilizando instâncias EC2 e RDS na AWS.</p>
+                    <div class="job-desc">
+                        Liderança de squad em ecossistema SaaS Healthtech atendendo 1.6 milhão+ de pacientes.
+                        <ul>
+                            <li>Redução de <strong>60% no tempo de resposta</strong> da aplicação via refatoração de gargalos.</li>
+                            <li>Gestão de infraestrutura AWS com foco em monitoramento e <strong>99.9% de uptime</strong>.</li>
+                            <li>Desenvolvimento de módulos Fintech integrados, processando volumes acima de R$ 1 milhão.</li>
+                            <li>Implementação de governança de dados e cibersegurança em conformidade com a LGPD.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="job-header">
-                        <div>
-                            <div class="job-title">Desenvolvedor Fullstack</div>
+                        <div class="job-title-group">
+                            <div class="job-title">Desenvolvedor Full Stack</div>
                             <div class="job-company">Tribunal do Consumidor</div>
                         </div>
                         <div class="job-date">Mar 2021 - Ago 2022</div>
                     </div>
-                    <p class="job-desc">Evolução de Trainee para Fullstack. Aplicação robusta de arquitetura MVC. Responsável por implementar padrões de projeto avançados, como Injeção de Dependência estruturada e uso intensivo de <strong>DTOs genéricos</strong> para tráfego seguro de dados entre camadas e integração com repositórios.</p>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">Programador Freelancer</div>
-                            <div class="job-company">Independente</div>
-                        </div>
-                        <div class="job-date">Nov 2019 - Presente</div>
+                    <div class="job-desc">
+                        Evolução de Trainee a Full Stack, focando em automação jurídica de alta performance.
+                        <ul>
+                            <li>Migração total de infraestrutura On-premise para <strong>AWS Cloud</strong> com zero downtime.</li>
+                            <li>Transformação de sistema legado em SPA moderno (Vue.js), resultando em ganho de 80% em performance percebida.</li>
+                            <li>Desenvolvimento de motor proprietário para automação da Lei 14.181/21.</li>
+                        </ul>
                     </div>
-                    <p class="job-desc">Desenvolvimento de soluções sob medida, criando integrações complexas, painéis administrativos escaláveis e APIs seguras utilizando primariamente PHP e Laravel com Docker para o ambiente de desenvolvimento local.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 class="section-header">Projetos e Produtos</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>Bar.Ganha — Economia Circular</h3>
+                        <p>Plataforma de trocas diretas com integridade transacional garantida. TCC nota máxima incubado pela PUC Minas.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">ASP.NET MVC</span><span class="tag">Azure</span><span class="tag">SQL Server</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>CalorieCounter — Clean Architecture</h3>
+                        <p>Gestão nutricional baseada em princípios de arquitetura limpa e desacoplamento total via Repository Pattern.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Laravel</span><span class="tag">Vue.js</span><span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>FinImprover — Dashboards Inteligentes</h3>
+                        <p>Migração de fluxos complexos de planilhas para sistema reativo com geração dinâmica de gráficos e inteligência financeira.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Livewire</span><span class="tag">MySQL</span><span class="tag">Tailwind</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -367,7 +374,6 @@
     </div>
 
     <script>
-        /* --- Ajusta o Ícone do Tema no Load --- */
         const themeToggle = document.getElementById('theme-toggle');
         const iconSun = document.getElementById('icon-sun');
         const iconMoon = document.getElementById('icon-moon');
@@ -393,7 +399,6 @@
             updateIconDisplay(newTheme);
         });
 
-        /* --- Lógica do Modal e Telemetria --- */
         const modal = document.getElementById("contact-modal");
         function openModal() { modal.style.display = "flex"; }
         function closeModal() { modal.style.display = "none"; }
@@ -455,7 +460,9 @@
                 });
                 const data = await res.json();
                 visitId = data.id;
-            } catch (e) {}
+            } catch (e) {
+                console.warn('Telemetria offline.');
+            }
         });
 
         async function marcarPresenca() {
