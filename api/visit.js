@@ -11,14 +11,16 @@ export default async function handler(req, res) {
 
     const { SUPABASE_URL, SUPABASE_KEY } = process.env;
 
-    // Rota POST: Cria a visita com Geolocalização Automática
+    // Rota POST: Cria a visita com Geolocalização Completa
     if (req.method === 'POST') {
         const { referrer, screen, lang, ua } = req.body;
 
-        // Captura dados geográficos dos headers da Vercel (não precisa de GPS)
+        // Captura dados geográficos dos headers da Vercel
         const city = req.headers['x-vercel-ip-city'] || 'Desconhecido';
         const region = req.headers['x-vercel-ip-country-region'] || 'Desconhecido';
         const country = req.headers['x-vercel-ip-country'] || 'Desconhecido';
+        const latitude = req.headers['x-vercel-ip-latitude'] || '0';
+        const longitude = req.headers['x-vercel-ip-longitude'] || '0';
         const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || '0.0.0.0';
 
         const response = await fetch(`${SUPABASE_URL}/rest/v1/visits`, {
@@ -37,7 +39,9 @@ export default async function handler(req, res) {
                 city,
                 region,
                 country,
-                ip: ip.split(',')[0] // Pega apenas o primeiro IP caso venha uma lista
+                latitude,
+                longitude,
+                ip: ip.split(',')[0]
             })
         });
 
@@ -45,7 +49,7 @@ export default async function handler(req, res) {
         return res.status(201).json(data[0]);
     }
 
-    // Rota PATCH: Atualiza com os campos de contato separados
+    // Rota PATCH: Atualiza com os campos de contato
     if (req.method === 'PATCH') {
         const { id, visitor_name, company, job_title, visitor_email, visitor_phone } = req.body;
 
