@@ -5,22 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo Inteligente | André Silva</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; max-width: 400px; }
-        input { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
-        button { background-color: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #1d4ed8; }
+        /* Estilos Gerais */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #1c1e21; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; width: 90%; max-width: 450px; }
+        h1 { margin-bottom: 0.5rem; color: #1d4ed8; }
+        p.subtitle { color: #65676b; margin-top: 0; margin-bottom: 1.5rem; }
+        hr { border: 0; border-top: 1px solid #e4e6eb; margin: 1.5rem 0; }
+
+        /* Estilos do Formulário */
+        #visit-form { text-align: left; }
+        #visit-form p.form-title { text-align: center; font-weight: bold; margin-bottom: 1rem; color: #050505; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; color: #4b5563; font-weight: 500; }
+        input { width: 100%; padding: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 1rem; box-sizing: border-box; /* Garante que padding não aumente largura */ }
+        input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,0.1); }
+        input::placeholder { color: #9ca3af; }
+        span.optional { color: #9ca3af; font-weight: normal; font-size: 0.8rem; }
+
+        button.btn-submit { background-color: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; width: 100%; margin-top: 1rem; transition: background-color 0.2s; }
+        button.btn-submit:hover { background-color: #1d4ed8; }
+        #form-message { text-align: center; margin-top: 1rem; color: #166534; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>André Silva</h1>
-        <p>Engenheiro de Software</p>
+        <p class="subtitle">Engenheiro de Software Sênior</p>
+        <p><em>(Conteúdo do currículo virá aqui em breve)</em></p>
+        
         <hr>
-        <div id="visit-form">
-            <p><strong>Deixe sua marca!</strong></p>
-            <input type="text" id="visitor-name" placeholder="Seu nome ou empresa">
-            <button onclick="marcarPresenca()">Estive aqui!</button>
+        
+        <div id="visit-form-container">
+            <div id="visit-form">
+                <p class="form-title">💬 Gostou do perfil? Deixe seu contato!</p>
+                
+                <div class="form-group">
+                    <label for="visitor-name">Seu Nome *</label>
+                    <input type="text" id="visitor-name" placeholder="Ex: João Silva" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visitor-company">Sua Empresa *</label>
+                    <input type="text" id="visitor-company" placeholder="Ex: Google, StartupXYZ" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visitor-role">Seu Cargo <span class="optional">(Opcional)</span></label>
+                    <input type="text" id="visitor-role" placeholder="Ex: Recrutador Técnico, CTO">
+                </div>
+
+                <div class="form-group">
+                    <label for="visitor-contact">Email ou Telefone *</label>
+                    <input type="text" id="visitor-contact" placeholder="Ex: joao@email.com ou (11) 9... " required>
+                </div>
+
+                <button class="btn-submit" onclick="marcarPresenca()">Estive aqui!</button>
+            </div>
+            <div id="form-message" style="display: none;">
+                <h3>Obrigado pela visita!</h3>
+                <p>Recebi seus dados e entrarei em contato em breve.</p>
+            </div>
         </div>
     </div>
 
@@ -29,7 +73,7 @@
         const API_URL = 'https://SUA-API-AQUI.vercel.app/api/visit';
         let visitId = null;
 
-        // 1. Telemetria Automática (Load)
+        // 1. Telemetria Automática (Load) - Continua igual
         window.addEventListener('load', async () => {
             const payload = {
                 type: 'load',
@@ -49,24 +93,57 @@
                 visitId = data.id;
                 console.log('Telemetria OK');
             } catch (e) {
-                console.warn('API ainda offline - rodando localmente');
+                console.warn('API offline - rodando localmente. Dados não salvos.');
             }
         });
 
-        // 2. Formulário Voluntário
+        // 2. Formulário Voluntário - Atualizado para capturar múltiplos campos
         async function marcarPresenca() {
-            const nome = document.getElementById('visitor-name').value;
-            if (!nome) return alert('Por favor, digite seu nome');
+            // Captura dos elementos
+            const nomeEl = document.getElementById('visitor-name');
+            const empresaEl = document.getElementById('visitor-company');
+            const cargoEl = document.getElementById('visitor-role');
+            const contatoEl = document.getElementById('visitor-contact');
+
+            // Captura dos valores
+            const nome = nomeEl.value.trim();
+            const empresa = empresaEl.value.trim();
+            const cargo = cargoEl.value.trim();
+            const contato = contatoEl.value.trim();
+
+            // Validação simples (Obrigatórios: Nome, Empresa, Contato)
+            if (!nome || !empresa || !contato) {
+                alert('Por favor, preencha os campos obrigatórios (*).');
+                return;
+            }
+
+            // Cria o payload atualizado (com os nomes de campo do banco)
+            const payloadUpdate = {
+                id: visitId,
+                visitor_name: nome,
+                company: empresa,
+                job_title: cargo || null, // Garante NULL se estiver vazio
+                contact_info: contato
+            };
 
             try {
-                await fetch(API_URL, {
-                    method: 'PATCH',
+                const response = await fetch(API_URL, {
+                    method: 'PATCH', // Mantemos PATCH porque estamos atualizando a visita
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: visitId, nome: nome })
+                    body: JSON.stringify(payloadUpdate)
                 });
-                document.getElementById('visit-form').innerHTML = "<h3>Obrigado pela visita!</h3>";
+
+                if (response.ok) {
+                    // Esconde o formulário e mostra mensagem de sucesso
+                    document.getElementById('visit-form').style.display = 'none';
+                    document.getElementById('form-message').style.display = 'block';
+                } else {
+                    throw new Error('Falha na API');
+                }
+
             } catch (e) {
-                alert('Valeu pela tentativa! API offline.');
+                alert('Valeu pela tentativa! Mas parece que minha API ainda está offline na Vercel.');
+                console.error('Erro no push:', e);
             }
         }
     </script>
