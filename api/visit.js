@@ -15,7 +15,6 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { referrer, screen, lang, ua } = req.body;
 
-        // Captura dados geográficos dos headers da Vercel
         const city = req.headers['x-vercel-ip-city'] || 'Desconhecido';
         const region = req.headers['x-vercel-ip-country-region'] || 'Desconhecido';
         const country = req.headers['x-vercel-ip-country'] || 'Desconhecido';
@@ -49,11 +48,21 @@ export default async function handler(req, res) {
         return res.status(201).json(data[0]);
     }
 
-    // Rota PATCH: Atualiza com os campos de contato
+    // Rota PATCH: Atualiza Lead OU Tempo de Permanência
     if (req.method === 'PATCH') {
-        const { id, visitor_name, company, job_title, visitor_email, visitor_phone } = req.body;
+        const { id, visitor_name, company, job_title, visitor_email, visitor_phone, time_on_page } = req.body;
 
         if (!id) return res.status(400).json({ error: 'ID da visita não encontrado' });
+
+        // Lógica Sênior: Monta o objeto apenas com o que foi enviado na requisição
+        // Isso evita que o timer apague o nome, ou que o form zere o timer.
+        const updateData = {};
+        if (visitor_name !== undefined) updateData.visitor_name = visitor_name;
+        if (company !== undefined) updateData.company = company;
+        if (job_title !== undefined) updateData.job_title = job_title;
+        if (visitor_email !== undefined) updateData.visitor_email = visitor_email;
+        if (visitor_phone !== undefined) updateData.visitor_phone = visitor_phone;
+        if (time_on_page !== undefined) updateData.time_on_page = time_on_page;
 
         await fetch(`${SUPABASE_URL}/rest/v1/visits?id=eq.${id}`, {
             method: 'PATCH',
@@ -62,13 +71,7 @@ export default async function handler(req, res) {
                 'apikey': SUPABASE_KEY,
                 'Authorization': `Bearer ${SUPABASE_KEY}`
             },
-            body: JSON.stringify({
-                visitor_name,
-                company,
-                job_title,
-                visitor_email,
-                visitor_phone
-            })
+            body: JSON.stringify(updateData)
         });
 
         return res.status(200).json({ success: true });
