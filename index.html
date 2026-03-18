@@ -14,6 +14,7 @@
 
     <meta name="theme-color" content="#f0f4f8" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +38,11 @@
             --accent: #8b5cf6;
             --timeline-line: #cbd5e1;
             --icon-fill: #334155;
-            --modal-bg: rgba(0, 0, 0, 0.4);
+            
+            /* Novas Variáveis Específicas para o Modal */
+            --modal-overlay: rgba(15, 23, 42, 0.6); /* Fundo escurecido atrás do modal */
+            --modal-surface: #ffffff; /* Fundo do modal Branco Sólido */
+            --input-bg: #f8fafc; /* Fundo dos inputs levemente cinza para dar contraste no branco */
         }
 
         [data-theme="dark"] {
@@ -54,7 +59,11 @@
             --accent: #a855f7;
             --timeline-line: #334155;
             --icon-fill: #cbd5e1;
-            --modal-bg: rgba(0, 0, 0, 0.8);
+            
+            /* Ajustes do Modal para o Dark Mode */
+            --modal-overlay: rgba(0, 0, 0, 0.8);
+            --modal-surface: #0f172a; /* Fundo do modal Azul muito escuro e sólido */
+            --input-bg: rgba(255, 255, 255, 0.05);
         }
 
         /* =========================================
@@ -105,9 +114,7 @@
         /* HERO SECTION */
         .hero { margin-bottom: 5rem; }
         .hero-title { 
-            font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -0.03em;
         }
         .hero-subtitle { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 1.5rem; letter-spacing: 1px; text-transform: uppercase; }
         .hero-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin-bottom: 2.5rem; }
@@ -163,17 +170,30 @@
         .job-date { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); background: var(--bg-base); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--card-border); transition: background-color 0.4s ease; }
         .job-desc { color: var(--text-muted); margin-top: 1rem; line-height: 1.6; }
 
-        /* MODAL E FORMS */
-        .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: var(--modal-bg); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
-        .modal-content { background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--card-border); padding: 2.5rem; border-radius: 24px; width: 90%; max-width: 450px; box-shadow: var(--card-shadow); position: relative; max-height: 90vh; overflow-y: auto; }
+        /* =========================================
+           MODAL E FORMS (Correção do Fundo Branco)
+           ========================================= */
+        .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: var(--modal-overlay); backdrop-filter: blur(8px); align-items: center; justify-content: center; transition: background 0.4s; }
+        .modal-content { 
+            background: var(--modal-surface); /* Agora usa a variável de fundo sólido */
+            border: 1px solid var(--card-border); 
+            padding: 2.5rem; border-radius: 24px; width: 90%; max-width: 450px; 
+            box-shadow: var(--card-shadow); position: relative; max-height: 90vh; overflow-y: auto; 
+            transition: background 0.4s ease;
+        }
         .close-btn { position: absolute; top: 20px; right: 24px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
         .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
         
         .form-title { text-align: center; font-weight: 800; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text-main); }
         .form-group { margin-bottom: 1.2rem; }
         label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
-        input { width: 100%; padding: 14px; background: rgba(0,0,0,0.02); border: 1px solid var(--timeline-line); color: var(--text-main); border-radius: 12px; font-size: 1rem; transition: 0.3s; }
-        [data-theme="dark"] input { background: rgba(255,255,255,0.03); }
+        
+        input { 
+            width: 100%; padding: 14px; 
+            background: var(--input-bg); /* Fundo específico para os inputs */
+            border: 1px solid var(--timeline-line); 
+            color: var(--text-main); border-radius: 12px; font-size: 1rem; transition: 0.3s; 
+        }
         input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); background: transparent; }
         .optional { font-weight: 400; color: var(--text-muted); font-size: 0.75rem; }
 
@@ -185,13 +205,11 @@
             .hero-title { font-size: 2.5rem; }
             .hero-subtitle { font-size: 1.1rem; }
             
-            /* Ajuste Perfeito para a Tech Stack no Mobile */
             .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
             .tech-card { padding: 1rem; gap: 8px; }
             .tech-card svg { width: 30px; height: 30px; }
             .tech-card span { font-size: 0.8rem; }
             
-            /* Ajuste dos Panels e Timeline */
             .glass-panel { padding: 1.5rem; }
             .job-header { flex-direction: column; align-items: flex-start; }
             .timeline { padding-left: 1.5rem; }
@@ -365,10 +383,8 @@
             }
         }
         
-        // Puxa o tema atual que o <head> já definiu
         updateIconDisplay(htmlElement.getAttribute('data-theme'));
 
-        // Clique no Botão
         themeToggle.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -377,7 +393,7 @@
             updateIconDisplay(newTheme);
         });
 
-        /* --- Lógica do Modal e Telemetria (Inalterada) --- */
+        /* --- Lógica do Modal e Telemetria --- */
         const modal = document.getElementById("contact-modal");
         function openModal() { modal.style.display = "flex"; }
         function closeModal() { modal.style.display = "none"; }
