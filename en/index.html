@@ -1,24 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>André Silva | Engenheiro de Software Sênior</title>
+    <title>André Silva | Senior Software Engineer</title>
     
     <script>
         let localTheme = localStorage.getItem('theme');
         let sysTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         let currentTheme = localTheme || sysTheme;
         document.documentElement.setAttribute('data-theme', currentTheme);
-    </script>
-
-    <script>
-        if (!sessionStorage.getItem('langChecked')) {
-            sessionStorage.setItem('langChecked', 'true');
-            if (!navigator.language.toLowerCase().startsWith('pt')) {
-                window.location.replace('en/');
-            }
-        }
     </script>
 
     <meta name="theme-color" content="#f0f4f8" media="(prefers-color-scheme: light)">
@@ -30,9 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           VARIÁVEIS DE TEMA E CSS GERAL
-           ========================================= */
+        /* O CSS AQUI DEVE SER EXATAMENTE O MESMO DO ARQUIVO INDEX.HTML PRINCIPAL */
         :root {
             --bg-base: #f0f4f8; --bg-blob-1: rgba(59, 130, 246, 0.15); --bg-blob-2: rgba(139, 92, 246, 0.15); 
             --card-bg: rgba(255, 255, 255, 0.6); --card-border: rgba(255, 255, 255, 0.8);
@@ -157,9 +146,9 @@
 <body>
 
     <div class="fixed-actions">
-        <a href="en/" class="action-btn" title="View in English">EN</a>
+        <a href="../" class="action-btn" title="Ver em Português">PT</a>
         
-        <button class="action-btn theme-toggle" id="theme-toggle" title="Alternar Tema">
+        <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Theme">
             <svg id="icon-sun" style="display: none;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             <svg id="icon-moon" style="display: none;" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
@@ -170,14 +159,14 @@
         <aside class="sidebar">
             <div>
                 <h1 class="hero-title">André Silva</h1>
-                <div class="hero-subtitle">Engenheiro de Software Sênior</div>
-                <p class="hero-desc">Projeto sistemas escaláveis e complexos com foco em qualidade, desempenho, segurança e resiliência.</p>
+                <div class="hero-subtitle">Senior Software Engineer</div>
+                <p class="hero-desc">I design highly scalable, complex systems with a rigorous focus on code quality, performance optimization, security, and resilience.</p>
                 
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="#sobre" class="active">Sobre</a></li>
-                        <li><a href="#experiencia">Experiência</a></li>
-                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#about" class="active">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
                     </ul>
                 </nav>
 
@@ -208,7 +197,7 @@
                         <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                     </a>
                 </div>
-                <a href="#" class="btn-cv-secondary" download>Baixar Currículo Completo (PDF)</a>
+                <a href="#" class="btn-cv-secondary" download>Download Full Resume (PDF)</a>
             </div>
         </aside>
 
@@ -217,36 +206,36 @@
             <div class="top-cta">
                 <button class="btn-glow" onclick="openModal()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <span class="btn-text">Vamos Conversar</span>
+                    <span class="btn-text">Let's Talk</span>
                 </button>
             </div>
 
-            <section id="sobre">
+            <section id="about">
                 <div class="glass-panel">
-                    <h2 class="section-header">Sobre Mim</h2>
-                    <p class="job-desc">Eu transito entre diversos ecossistemas tecnológicos, projetando soluções resilientes para plataformas com mais de <strong>30 milhões de usuários</strong> e milhões de requisições por minuto. Pós-graduado em Cibersegurança e Governança de Dados pela PUC Minas, uno performance extrema a práticas rigorosas de proteção de dados.</p>
+                    <h2 class="section-header">About Me</h2>
+                    <p class="job-desc">I navigate across diverse technology ecosystems, designing resilient solutions for platforms with over <strong>30 million users</strong> and millions of requests per minute. Holding a postgraduate degree in Cybersecurity and Data Governance from PUC Minas, I bridge extreme performance with rigorous data protection practices.</p>
                 </div>
             </section>
 
-            <section id="experiencia">
+            <section id="experience">
                 <div class="glass-panel">
-                    <h2 class="section-header">Experiência Profissional</h2>
+                    <h2 class="section-header">Professional Experience</h2>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="job-header">
                                 <div class="job-title-group">
-                                    <div class="job-title">Desenvolvedor FullStack</div>
-                                    <div class="job-company">Cademí (Remoto)</div>
+                                    <div class="job-title">Full Stack Engineer II</div>
+                                    <div class="job-company">Cademí (Remote)</div>
                                 </div>
-                                <div class="job-date">Out 2024 - Atual</div>
+                                <div class="job-date">Oct 2024 - Present</div>
                             </div>
                             <div class="job-desc">
-                                Atuação em plataforma LMS de alta escala com mais de 30 milhões de alunos.
+                                Operations in a high-scale LMS platform serving over 30 million students.
                                 <ul>
-                                    <li>Liderança na implementação de testes core, alcançando 100% de cobertura em Webhooks e Gateways.</li>
-                                    <li>Modernização de arquitetura legada para <strong>DDD e Service Layer</strong> em Laravel.</li>
-                                    <li>Desenvolvimento de motor de automação (Crawler) para migração de 50.000+ aulas.</li>
-                                    <li>Gestão de Big Data (PostgreSQL) e Cache (Redis) sob alto tráfego.</li>
+                                    <li>Led the implementation of core testing, achieving 100% coverage on Webhooks and payment Gateways.</li>
+                                    <li>Spearheaded the modernization of legacy architecture to <strong>DDD and Service Layer</strong> using Laravel.</li>
+                                    <li>Developed an automation engine (Crawler) to facilitate the migration of 50,000+ classes.</li>
+                                    <li>Managed Big Data (PostgreSQL) and Cache (Redis) environments under strict high-traffic SLAs.</li>
                                 </ul>
                             </div>
                         </div>
@@ -254,17 +243,17 @@
                         <div class="timeline-item">
                             <div class="job-header">
                                 <div class="job-title-group">
-                                    <div class="job-title">Desenvolvedor Fullstack Sênior</div>
-                                    <div class="job-company">Eyecare Health (Remoto)</div>
+                                    <div class="job-title">Senior Full Stack / Tech Lead</div>
+                                    <div class="job-company">Eyecare Health (Remote)</div>
                                 </div>
-                                <div class="job-date">Ago 2022 - Out 2024</div>
+                                <div class="job-date">Aug 2022 - Oct 2024</div>
                             </div>
                             <div class="job-desc">
-                                Liderança de squad em ecossistema SaaS Healthtech atendendo 1.6 milhão+ de pacientes.
+                                Squad leadership in a Healthtech SaaS ecosystem serving 1.6M+ patients.
                                 <ul>
-                                    <li>Redução de <strong>60% no tempo de resposta</strong> da aplicação via refatoração de gargalos.</li>
-                                    <li>Gestão de infraestrutura AWS com foco em monitoramento e <strong>99.9% de uptime</strong>.</li>
-                                    <li>Desenvolvimento de módulos Fintech integrados, processando volumes acima de R$ 1 milhão.</li>
+                                    <li>Achieved a <strong>60% reduction in application response time</strong> by refactoring architectural bottlenecks.</li>
+                                    <li>Managed AWS infrastructure with a focus on advanced monitoring and maintaining <strong>99.9% uptime</strong>.</li>
+                                    <li>Developed integrated Fintech modules, processing financial volumes exceeding R$ 1 million.</li>
                                 </ul>
                             </div>
                         </div>
@@ -272,17 +261,17 @@
                         <div class="timeline-item">
                             <div class="job-header">
                                 <div class="job-title-group">
-                                    <div class="job-title">Desenvolvedor Full Stack</div>
+                                    <div class="job-title">Full Stack Developer</div>
                                     <div class="job-company">Tribunal do Consumidor</div>
                                 </div>
-                                <div class="job-date">Mar 2021 - Ago 2022</div>
+                                <div class="job-date">Mar 2021 - Aug 2022</div>
                             </div>
                             <div class="job-desc">
-                                Evolução de Trainee a Full Stack, focando em automação jurídica de alta performance.
+                                Evolution from Trainee to Full Stack, focusing on high-performance legal automation.
                                 <ul>
-                                    <li>Migração total de infraestrutura On-premise para <strong>AWS Cloud</strong> com zero downtime.</li>
-                                    <li>Transformação de sistema legado em SPA moderno (Vue.js), resultando em ganho de 80% em performance percebida.</li>
-                                    <li>Desenvolvimento de motor proprietário para automação da Lei 14.181/21.</li>
+                                    <li>Executed a complete infrastructure migration from On-premise to <strong>AWS Cloud</strong> with zero downtime.</li>
+                                    <li>Transformed a legacy system into a modern SPA (Vue.js), resulting in an 80% gain in perceived performance.</li>
+                                    <li>Developed a proprietary automation engine tailored for the Brazilian Law 14.181/21.</li>
                                 </ul>
                             </div>
                         </div>
@@ -290,26 +279,26 @@
                 </div>
             </section>
 
-            <section id="projetos">
+            <section id="projects">
                 <div class="glass-panel">
-                    <h2 class="section-header">Projetos</h2>
+                    <h2 class="section-header">Featured Projects</h2>
                     
                     <div class="carousel-container">
                         <div class="carousel-track">
                             <div class="project-card">
                                 <div>
-                                    <h3>Currículo Inteligente (SaaS)</h3>
-                                    <p>Plataforma de portfólio interativo estruturada com design system Sênior. Integra telemetria nativa (Fetch API), *Dark/Light mode* autônomo baseado no SO e gerenciamento de estado via LocalStorage.</p>
+                                    <h3>Smart Resume (SaaS)</h3>
+                                    <p>Interactive portfolio platform built with a Senior design system. Integrates native telemetry (Fetch API), autonomous *Dark/Light mode* based on OS preferences, and state management via LocalStorage.</p>
                                 </div>
                                 <div class="project-tags">
-                                    <span class="tag">JavaScript Vanilla</span><span class="tag">CSS Variables</span><span class="tag">REST API</span>
+                                    <span class="tag">Vanilla JS</span><span class="tag">CSS Variables</span><span class="tag">REST API</span>
                                 </div>
                             </div>
 
                             <div class="project-card">
                                 <div>
-                                    <h3>Bar.Ganha — Economia Circular</h3>
-                                    <p>Motor de trocas diretas com integridade transacional garantida via banco relacional. TCC aprovado com nota máxima e incubado pela PUC Minas pelo potencial de mercado.</p>
+                                    <h3>Bar.Ganha — Circular Economy</h3>
+                                    <p>Direct exchange engine ensuring transactional integrity via relational databases. Maximum grade final paper, incubated by PUC Minas due to its high market potential.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">ASP.NET MVC</span><span class="tag">Azure</span><span class="tag">SQL Server</span>
@@ -319,7 +308,7 @@
                             <div class="project-card">
                                 <div>
                                     <h3>CalorieCounter</h3>
-                                    <p>Motor de cálculo biofísico preditivo e gestão nutricional estruturado estritamente sob princípios de Clean Architecture, garantindo desacoplamento total da lógica via Repository Pattern.</p>
+                                    <p>Predictive biophysical calculation engine and nutritional management system built strictly on Clean Architecture principles, ensuring total logic decoupling via the Repository Pattern.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Laravel</span><span class="tag">Vue.js</span><span class="tag">PostgreSQL</span>
@@ -329,7 +318,7 @@
                             <div class="project-card">
                                 <div>
                                     <h3>FinImprover — Dashboards</h3>
-                                    <p>Solução corporativa focada em reatividade e baixa latência. Automatiza a migração de fluxos de planilhas complexas para um banco centralizado com geração dinâmica de gráficos de inteligência financeira.</p>
+                                    <p>Corporate solution focused on reactivity and low latency. Automates the migration of complex spreadsheet workflows into a centralized database with dynamic financial intelligence chart generation.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Livewire</span><span class="tag">MySQL</span><span class="tag">Tailwind CSS</span>
@@ -338,18 +327,18 @@
 
                             <div class="project-card">
                                 <div>
-                                    <h3>Currículo Inteligente (SaaS)</h3>
-                                    <p>Plataforma de portfólio interativo estruturada com design system Sênior. Integra telemetria nativa (Fetch API), *Dark/Light mode* autônomo baseado no SO e gerenciamento de estado via LocalStorage.</p>
+                                    <h3>Smart Resume (SaaS)</h3>
+                                    <p>Interactive portfolio platform built with a Senior design system. Integrates native telemetry (Fetch API), autonomous *Dark/Light mode* based on OS preferences, and state management via LocalStorage.</p>
                                 </div>
                                 <div class="project-tags">
-                                    <span class="tag">JavaScript Vanilla</span><span class="tag">CSS Variables</span><span class="tag">REST API</span>
+                                    <span class="tag">Vanilla JS</span><span class="tag">CSS Variables</span><span class="tag">REST API</span>
                                 </div>
                             </div>
 
                             <div class="project-card">
                                 <div>
-                                    <h3>Bar.Ganha — Economia Circular</h3>
-                                    <p>Motor de trocas diretas com integridade transacional garantida via banco relacional. TCC aprovado com nota máxima e incubado pela PUC Minas pelo potencial de mercado.</p>
+                                    <h3>Bar.Ganha — Circular Economy</h3>
+                                    <p>Direct exchange engine ensuring transactional integrity via relational databases. Maximum grade final paper, incubated by PUC Minas due to its high market potential.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">ASP.NET MVC</span><span class="tag">Azure</span><span class="tag">SQL Server</span>
@@ -359,7 +348,7 @@
                             <div class="project-card">
                                 <div>
                                     <h3>CalorieCounter</h3>
-                                    <p>Motor de cálculo biofísico preditivo e gestão nutricional estruturado estritamente sob princípios de Clean Architecture, garantindo desacoplamento total da lógica via Repository Pattern.</p>
+                                    <p>Predictive biophysical calculation engine and nutritional management system built strictly on Clean Architecture principles, ensuring total logic decoupling via the Repository Pattern.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Laravel</span><span class="tag">Vue.js</span><span class="tag">PostgreSQL</span>
@@ -369,7 +358,7 @@
                             <div class="project-card">
                                 <div>
                                     <h3>FinImprover — Dashboards</h3>
-                                    <p>Solução corporativa focada em reatividade e baixa latência. Automatiza a migração de fluxos de planilhas complexas para um banco centralizado com geração dinâmica de gráficos de inteligência financeira.</p>
+                                    <p>Corporate solution focused on reactivity and low latency. Automates the migration of complex spreadsheet workflows into a centralized database with dynamic financial intelligence chart generation.</p>
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Livewire</span><span class="tag">MySQL</span><span class="tag">Tailwind CSS</span>
@@ -381,8 +370,8 @@
             </section>
 
             <footer class="site-footer">
-                <p>Projetado e desenvolvido por <strong>André Silva</strong> &copy; 2026</p>
-                <p class="footer-sub">Construído estritamente com Vanilla JavaScript e CSS Variables. Alta performance nativa.</p>
+                <p>Designed and developed by <strong>André Silva</strong> &copy; 2026</p>
+                <p class="footer-sub">Built entirely with Vanilla JavaScript and CSS Variables. Native high performance.</p>
             </footer>
 
         </main>
@@ -393,37 +382,37 @@
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <div id="visit-form-container">
                 <div id="visit-form">
-                    <p class="form-title">Iniciar Conversa</p>
+                    <p class="form-title">Start a Conversation</p>
                     <div class="form-group">
-                        <label for="visitor-name">Nome Completo</label>
-                        <input type="text" id="visitor-name" placeholder="Ex: João Silva" required>
+                        <label for="visitor-name">Full Name</label>
+                        <input type="text" id="visitor-name" placeholder="Ex: John Doe" required>
                     </div>
                     <div class="form-group">
-                        <label for="visitor-company">Empresa</label>
+                        <label for="visitor-company">Company</label>
                         <input type="text" id="visitor-company" placeholder="Ex: Google, StartupXYZ" required>
                     </div>
                     <div class="form-group">
-                        <label for="visitor-role">Cargo <span class="optional">(Opcional)</span></label>
-                        <input type="text" id="visitor-role" placeholder="Ex: Tech Lead, Recrutador">
+                        <label for="visitor-role">Role <span class="optional">(Optional)</span></label>
+                        <input type="text" id="visitor-role" placeholder="Ex: Tech Lead, Recruiter">
                     </div>
                     <div class="form-group">
-                        <label for="visitor-email">E-mail Corporativo</label>
-                        <input type="email" id="visitor-email" placeholder="nome@empresa.com" required>
+                        <label for="visitor-email">Corporate E-mail</label>
+                        <input type="email" id="visitor-email" placeholder="name@company.com" required>
                     </div>
                     <div class="form-group">
-                        <label for="visitor-phone">WhatsApp / Telefone</label>
-                        <input type="tel" id="visitor-phone" placeholder="+55 (11) 99999-9999" maxlength="19" required>
+                        <label for="visitor-phone">WhatsApp / Phone</label>
+                        <input type="tel" id="visitor-phone" placeholder="+1 (555) 000-0000" required>
                     </div>
-                    <button class="btn-glow" style="width: 100%; justify-content: center; margin-top: 15px;" onclick="marcarPresenca()">Enviar Mensagem</button>
+                    <button class="btn-glow" style="width: 100%; justify-content: center; margin-top: 15px;" onclick="marcarPresenca()">Send Message</button>
                 </div>
                 <div id="form-message" style="display: none; text-align: center; color: var(--primary); font-weight: 800; margin-top: 2rem; font-size: 1.2rem;">
-                    <h3>Contato Enviado!</h3>
-                    <p style="font-weight: 500; color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">Recebi seus dados e retornarei em breve.</p>
+                    <h3>Message Sent!</h3>
+                    <p style="font-weight: 500; color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">I received your details and will get back to you shortly.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="app.js" defer></script>
+    <script src="../app.js" defer></script>
 </body>
 </html>
