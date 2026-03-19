@@ -1,3 +1,4 @@
+/* --- Toggle de Tema --- */
 const themeToggle = document.getElementById('theme-toggle');
 const iconSun = document.getElementById('icon-sun');
 const iconMoon = document.getElementById('icon-moon');
@@ -47,6 +48,64 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+/* --- Lógica do Carrossel de Projetos (Desktop) --- */
+const carouselContainer = document.querySelector('.carousel-container');
+
+if (carouselContainer) {
+    let isHovered = false;
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    // Auto-scroll fluído
+    function autoScroll() {
+        // Roda apenas se não tiver mouse em cima, não estiver arrastando e se a tela for desktop
+        if (!isHovered && !isDragging && window.innerWidth > 968) {
+            carouselContainer.scrollLeft += 1; // Velocidade do scroll
+            
+            // Loop infinito
+            if (carouselContainer.scrollLeft >= (carouselContainer.scrollWidth - carouselContainer.clientWidth)) {
+                carouselContainer.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+
+    // Pausar no hover
+    carouselContainer.addEventListener('mouseenter', () => isHovered = true);
+    carouselContainer.addEventListener('mouseleave', () => {
+        isHovered = false;
+        isDragging = false;
+    });
+
+    // Clicar e arrastar (Drag to scroll)
+    carouselContainer.style.cursor = 'grab';
+
+    carouselContainer.addEventListener('mousedown', (e) => {
+        // Só permite arrastar no desktop
+        if (window.innerWidth <= 968) return; 
+        isDragging = true;
+        carouselContainer.style.cursor = 'grabbing';
+        startX = e.pageX - carouselContainer.offsetLeft;
+        scrollLeft = carouselContainer.scrollLeft;
+    });
+
+    carouselContainer.addEventListener('mouseup', () => {
+        isDragging = false;
+        carouselContainer.style.cursor = 'grab';
+    });
+
+    carouselContainer.addEventListener('mousemove', (e) => {
+        if (!isDragging || window.innerWidth <= 968) return;
+        e.preventDefault();
+        const x = e.pageX - carouselContainer.offsetLeft;
+        const walk = (x - startX) * 1.5; // Sensibilidade do arraste
+        carouselContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    // Inicia a animação
+    autoScroll();
+}
 
 /* --- Modal --- */
 const modal = document.getElementById("contact-modal");
@@ -121,7 +180,6 @@ async function marcarPresenca() {
     const telefone = document.getElementById('visitor-phone').value.trim();
 
     if (!nome || !empresa || !email || !telefone) {
-        // Alerta inteligente baseado no idioma do HTML da página atual
         const isPt = document.documentElement.lang.startsWith('pt');
         alert(isPt ? 'Por favor, preencha todos os campos obrigatórios (*).' : 'Please fill in all required fields (*).');
         return;
