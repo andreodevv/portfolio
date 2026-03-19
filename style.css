@@ -49,7 +49,7 @@ body::after { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: 
 .btn-cv-secondary:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; border-radius: 2px; }
 
 /* --- SIDEBAR & NAV --- */
-.sidebar { position: sticky; top: 0; width: 45%; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 5rem 0; }
+.sidebar { position: sticky; top: 0; width: 40%; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 5rem 0; }
 .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; color: var(--text-main); letter-spacing: -0.03em; }
 .hero-subtitle { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 1.5rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
 .hero-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem; }
@@ -69,7 +69,7 @@ body::after { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: 
 .social-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 /* --- CONTEÚDO PRINCIPAL --- */
-.main-content { width: 55%; padding: 5rem 0 2rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
+.main-content { width: 65%; padding: 5rem 0 2rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
 .top-cta { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; } /* Ajuste de espaçamento feito aqui */
 .glass-panel { background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: 20px; box-shadow: var(--card-shadow); padding: 2.5rem; transition: background-color 0.4s ease, border-color 0.4s ease; }
 .section-header { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; color: var(--text-main); }
