@@ -236,3 +236,10 @@ textarea {
 .cv-icon-btn:active {
     transform: translateY(0);
 }
+
+/* Tratamento específico para Mobile */
+@media (max-width: 768px) {
+    .cv-action-group {
+        margin-bottom: 1.5rem; /* Respiro balanceado para telas menores */
+    }
+}
