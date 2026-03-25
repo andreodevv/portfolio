@@ -197,3 +197,9 @@ textarea {
     resize: vertical; /* Impede o usuário de quebrar o layout horizontalmente */
     min-height: 120px;
 }
+
+.btn-cv-secondary:hover {
+    color: var(--primary); /* Faz o texto brilhar na cor do seu tema */
+    border-color: var(--primary);
+    transform: translateX(5px); /* Um leve deslocamento para a direita ao passar o mouse */
+}
