@@ -160,10 +160,6 @@ window.addEventListener('visibilitychange', () => {
 
 window.addEventListener('pagehide', updateAndSendTime);
 
-document.getElementById('visitor-phone').addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/[^\d+()\s-]/g, '');
-});
-
 window.addEventListener('load', async () => {
     const isReturning = localStorage.getItem('visited_before') === 'true';
     localStorage.setItem('visited_before', 'true');
@@ -193,23 +189,23 @@ window.addEventListener('load', async () => {
     }
 });
 
-async function marcarPresenca() {
+// NOVA FUNÇÃO DO FORMULÁRIO SIMPLIFICADO
+async function enviarMensagem() {
     const nome = document.getElementById('visitor-name').value.trim();
-    const empresa = document.getElementById('visitor-company').value.trim();
-    const cargo = document.getElementById('visitor-role').value.trim();
     const email = document.getElementById('visitor-email').value.trim();
-    const telefone = document.getElementById('visitor-phone').value.trim();
+    const mensagem = document.getElementById('visitor-message').value.trim();
 
-    if (!nome || !empresa || !email || !telefone) {
+    if (!nome || !email || !mensagem) {
         const isPt = document.documentElement.lang.startsWith('pt');
-        alert(isPt ? 'Por favor, preencha todos os campos obrigatórios (*).' : 'Please fill in all required fields (*).');
+        alert(isPt ? 'Por favor, preencha todos os campos.' : 'Please fill in all fields.');
         return;
     }
 
     const payloadUpdate = {
         id: visitId,
-        visitor_name: nome, company: empresa, job_title: cargo || null,
-        visitor_email: email, visitor_phone: telefone
+        visitor_name: nome,
+        visitor_email: email,
+        message: mensagem
     };
 
     try {
@@ -218,12 +214,15 @@ async function marcarPresenca() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payloadUpdate)
         });
+        
         if (response.ok) {
             document.getElementById('visit-form').style.display = 'none';
             document.getElementById('form-message').style.display = 'block';
             setTimeout(closeModal, 3500); 
         }
-    } catch (e) { console.error(e); }
+    } catch (e) { 
+        console.error(e); 
+    }
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();

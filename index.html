@@ -47,7 +47,7 @@
         <aside class="sidebar">
             <div>
                 <h1 class="hero-title">André Silva</h1>
-                <div class="hero-subtitle">Engenheiro de Software Sênior</div>
+                <div class="hero-subtitle">Desenvolvedor de Software Sênior</div>
                 <p class="hero-desc">Projeto sistemas escaláveis e complexos com foco em qualidade, desempenho, segurança e resiliência.</p>
                 
                 <nav class="nav-menu">
@@ -72,7 +72,6 @@
                     <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
                     <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
                     <img src="https://img.shields.io/badge/Cybersecurity-000000?style=for-the-badge&logo=strapi&logoColor=white" alt="Cybersecurity" />
-                    <img src="https://img.shields.io/badge/Cursor_AI-555555?style=for-the-badge&logo=openai&logoColor=white" alt="Cursor AI" />
                 </div>
             </div>
 
@@ -94,7 +93,7 @@
             <div class="top-cta">
                 <button class="btn-glow" onclick="openModal()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <span class="btn-text">Vamos Conversar</span>
+                    <span class="btn-text">Entrar em contato</span>
                 </button>
             </div>
 
@@ -247,32 +246,25 @@
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <div id="visit-form-container">
                 <div id="visit-form">
-                    <p class="form-title">Iniciar Conversa</p>
+                    <p class="form-title">Entrar em Contato</p>
+                    <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-top: -15px; margin-bottom: 25px;">Me conte sobre o seu projeto ou a vaga que deseja preencher.</p>
                     <div class="form-group">
-                        <label for="visitor-name">Nome Completo</label>
+                        <label for="visitor-name">Nome</label>
                         <input type="text" id="visitor-name" placeholder="Ex: João Silva" required>
                     </div>
                     <div class="form-group">
-                        <label for="visitor-company">Empresa</label>
-                        <input type="text" id="visitor-company" placeholder="Ex: Google, StartupXYZ" required>
+                        <label for="visitor-email">E-mail</label>
+                        <input type="email" id="visitor-email" placeholder="joao@empresa.com" required>
                     </div>
                     <div class="form-group">
-                        <label for="visitor-role">Cargo <span class="optional">(Opcional)</span></label>
-                        <input type="text" id="visitor-role" placeholder="Ex: Tech Lead, Recrutador">
+                        <label for="visitor-message">Mensagem</label>
+                        <textarea id="visitor-message" rows="4" placeholder="Como posso ajudar?" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="visitor-email">E-mail Corporativo</label>
-                        <input type="email" id="visitor-email" placeholder="nome@empresa.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="visitor-phone">WhatsApp / Telefone</label>
-                        <input type="tel" id="visitor-phone" placeholder="+55 (11) 99999-9999" maxlength="19" required>
-                    </div>
-                    <button class="btn-glow" style="width: 100%; justify-content: center; margin-top: 15px;" onclick="marcarPresenca()">Enviar Mensagem</button>
+                    <button class="btn-glow" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="enviarMensagem()">Enviar Mensagem</button>
                 </div>
                 <div id="form-message" style="display: none; text-align: center; color: var(--primary); font-weight: 800; margin-top: 2rem; font-size: 1.2rem;">
-                    <h3>Contato Enviado!</h3>
-                    <p style="font-weight: 500; color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">Recebi seus dados e retornarei em breve.</p>
+                    <h3>Mensagem Enviada!</h3>
+                    <p style="font-weight: 500; color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">Recebi o seu contato e retornarei em breve.</p>
                 </div>
             </div>
         </div>

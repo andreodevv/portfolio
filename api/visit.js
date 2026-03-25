@@ -41,7 +41,6 @@ export default async function handler(req, res) {
                 region,
                 country,
                 ip: ip.split(',')[0],
-                // Novos campos de Marketing
                 utm_source,
                 utm_medium,
                 utm_campaign,
@@ -53,21 +52,25 @@ export default async function handler(req, res) {
         return res.status(201).json(data[0]);
     }
 
-    // Rota PATCH: Atualiza Lead OU Tempo de Permanência (Continua dinâmico)
+    // Rota PATCH: Atualiza Lead (Nome, Email, Mensagem) OU Tempo de Permanência
     if (req.method === 'PATCH') {
-        const { id, visitor_name, company, job_title, visitor_email, visitor_phone, time_on_page } = req.body;
+        // CORREÇÃO: Removidos os campos antigos e adicionado o 'message'
+        const { id, visitor_name, visitor_email, message, time_on_page } = req.body;
 
-        if (!id) return res.status(400).json({ error: 'ID da visita não encontrado' });
+        if (!id) {
+            return res.status(400).json({ error: 'ID da visita não informado.' });
+        }
 
         const updateData = {};
         if (visitor_name !== undefined) updateData.visitor_name = visitor_name;
-        if (company !== undefined) updateData.company = company;
-        if (job_title !== undefined) updateData.job_title = job_title;
         if (visitor_email !== undefined) updateData.visitor_email = visitor_email;
-        if (visitor_phone !== undefined) updateData.visitor_phone = visitor_phone;
+        
+        // CORREÇÃO: Condicional apontando para a variável correta
+        if (message !== undefined) updateData.message = message;
+
         if (time_on_page !== undefined) updateData.time_on_page = time_on_page;
 
-        await fetch(`${SUPABASE_URL}/rest/v1/visits?id=eq.${id}`, {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/visits?id=eq.${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,8 +80,13 @@ export default async function handler(req, res) {
             body: JSON.stringify(updateData)
         });
 
+        if (!response.ok) {
+            const errorData = await response.json();
+            return res.status(response.status).json({ error: 'Falha ao atualizar Supabase', details: errorData });
+        }
+
         return res.status(200).json({ success: true });
     }
 
-    return res.status(405).json({ message: 'Método não permitido' });
+    return res.status(405).json({ message: 'Método HTTP não permitido.' });
 }
