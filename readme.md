@@ -1,4 +1,4 @@
-# Smart Resume - Senior Software Engineering Portfolio
+# Curriculo Inteligente
 
 Este projeto representa o estado da arte em portfólios técnicos para engenharia de software de alta performance. Diferente de currículos estáticos ou aplicações baseadas em frameworks pesados, esta solução foca em carregamento instantâneo, métricas perfeitas de Core Web Vitals e uma arquitetura de dados baseada em Single Source of Truth (SSoT).
 
