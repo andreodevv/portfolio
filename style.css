@@ -203,3 +203,36 @@ textarea {
     border-color: var(--primary);
     transform: translateX(5px); /* Um leve deslocamento para a direita ao passar o mouse */
 }
+
+.cv-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; /* Reduzido (antes era 36px) */
+    height: 28px; /* Reduzido */
+    border-radius: 6px;
+    background: transparent; /* Removemos o fundo cinza para ficar mais "limpo" */
+    color: var(--text-muted);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cv-icon-btn svg {
+    width: 15px; /* Ícone mais delicado */
+    height: 15px;
+    transition: transform 0.3s ease;
+}
+
+.cv-icon-btn:hover {
+    color: var(--primary); /* Mantém a cor primária no texto e ícone */
+    
+    /* MODIFICAÇÃO: Um fundo mais presente e uma borda sutil no hover */
+    background: var(--bg-blob-1); /* Um roxo/azul muito claro de fundo */
+    border: 1px solid var(--primary-glow); /* Uma borda sutil brilhante */
+    
+    transform: translateY(-3px) scale(1.05); /* Sobe um pouco mais e aumenta levemente */
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1); /* Sombra suave na cor primária */
+}
+
+.cv-icon-btn:active {
+    transform: translateY(0);
+}
