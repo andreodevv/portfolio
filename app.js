@@ -49,40 +49,46 @@ window.addEventListener('scroll', () => {
     });
 });
 
-/* --- Lógica do Carrossel de Projetos (Desktop) --- */
+/* --- Lógica do Carrossel de Projetos Infinito e Perfeito (Desktop) --- */
 const carouselContainer = document.querySelector('.carousel-container');
+const carouselTrack = document.querySelector('.carousel-track');
 
-if (carouselContainer) {
+if (carouselContainer && carouselTrack) {
+    // 1. Calcula o ponto de loop EXATO antes de clonar (Largura dos itens + 1 gap)
+    const originalWidth = carouselTrack.scrollWidth;
+    const gap = parseFloat(window.getComputedStyle(carouselTrack).gap) || 0;
+    const loopPoint = originalWidth + gap;
+
+    // 2. Clona todo o conteúdo de uma vez de forma performática
+    carouselTrack.innerHTML += carouselTrack.innerHTML;
+
     let isHovered = false;
     let isDragging = false;
     let startX, scrollLeft;
 
-    // Auto-scroll fluído
     function autoScroll() {
-        // Roda apenas se não tiver mouse em cima, não estiver arrastando e se a tela for desktop
         if (!isHovered && !isDragging && window.innerWidth > 968) {
             carouselContainer.scrollLeft += 1; // Velocidade do scroll
             
-            // Loop infinito
-            if (carouselContainer.scrollLeft >= (carouselContainer.scrollWidth - carouselContainer.clientWidth)) {
+            // O reset agora é pixel-perfect, sem pulos visuais
+            if (carouselContainer.scrollLeft >= loopPoint) {
                 carouselContainer.scrollLeft = 0;
             }
         }
         requestAnimationFrame(autoScroll);
     }
 
-    // Pausar no hover
+    // Eventos de Mouse para Pausar
     carouselContainer.addEventListener('mouseenter', () => isHovered = true);
     carouselContainer.addEventListener('mouseleave', () => {
         isHovered = false;
         isDragging = false;
     });
 
-    // Clicar e arrastar (Drag to scroll)
+    // Drag to scroll (Apenas Desktop)
     carouselContainer.style.cursor = 'grab';
 
     carouselContainer.addEventListener('mousedown', (e) => {
-        // Só permite arrastar no desktop
         if (window.innerWidth <= 968) return; 
         isDragging = true;
         carouselContainer.style.cursor = 'grabbing';
@@ -97,13 +103,28 @@ if (carouselContainer) {
 
     carouselContainer.addEventListener('mousemove', (e) => {
         if (!isDragging || window.innerWidth <= 968) return;
-        e.preventDefault();
+        e.preventDefault(); // Previne seleção de texto acidental
+        
         const x = e.pageX - carouselContainer.offsetLeft;
-        const walk = (x - startX) * 1.5; // Sensibilidade do arraste
-        carouselContainer.scrollLeft = scrollLeft - walk;
+        const walk = (x - startX) * 1.5; 
+        
+        let newScrollLeft = scrollLeft - walk;
+        
+        // Mantém a integridade do loop perfeito ao arrastar manualmente (Drag)
+        if (newScrollLeft <= 0) {
+            newScrollLeft = loopPoint - 1;
+            startX = e.pageX - carouselContainer.offsetLeft; // Reseta a âncora do mouse
+            scrollLeft = newScrollLeft;
+        } else if (newScrollLeft >= loopPoint) {
+            newScrollLeft = 0;
+            startX = e.pageX - carouselContainer.offsetLeft; // Reseta a âncora do mouse
+            scrollLeft = newScrollLeft;
+        }
+
+        carouselContainer.scrollLeft = newScrollLeft;
     });
 
-    // Inicia a animação
+    // Inicia a animação no carregamento
     autoScroll();
 }
 
@@ -204,3 +225,5 @@ async function marcarPresenca() {
         }
     } catch (e) { console.error(e); }
 }
+
+document.getElementById('year').textContent = new Date().getFullYear();
